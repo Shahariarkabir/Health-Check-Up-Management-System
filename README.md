@@ -11,59 +11,59 @@ Goals
 #Features of the Project 
 
 ➔	In this project the “Admin” has the following features:
-◆	Create Patients Appointments.
-◆	View Patients Appointments Details.
-◆	Check the particular check-up cost.
-◆	View Patients Test Details.
-◆	View Total patients list.
+◆	Create Patients Appointments. <br>
+◆	View Patients Appointments Details. <br>
+◆	Check the particular check-up cost. <br>
+◆	View Patients Test Details. <br>
+◆	View Total patients list. <br>
 
 ➔	In this project the “Patient” has the following features:
 
-◆	Book Appointments.
-◆	View Appointments Details.
-◆	Check testing costs.
-◆	View Patients Test Details.
-◆	 View Reports.
+◆	Book Appointments. <br>
+◆	View Appointments Details. <br>
+◆	Check testing costs. <br>
+◆	View Patients Test Details. <br>
+◆	 View Reports. <br>
 
-#Specifications
+#Specifications <br>
 In order to run this project, we will require IntelliJ IDEA IDE, and Windows terminal/Console. When run this console user needs to submit a number as the print option.  
 When you run this project, you will see in the console A Welcome Message. Then In the console you’ll see a message that will ask you what type of user you are!! If you are Admin then you have to choose Admin option or if you are a Patient then you’ll choose the Patient option. If any user chooses the wrong option then a message will show that he is wrong.
 
-I.	Admin:
+I.	Admin: <br>
 After log in, Admin can choose multiple options. By using those options, they can view data of patient, appointments and the reports.
 
-II.	Patient:
+II.	Patient: <br>
 After log in, patients can choose multiple options. They can book appointments, view appointments, test costs and test reports.
 
 #Tools Used
-●	IntelliJ IDEA IDE
-●	Notepad++
-●	Git Bash
-●	Windows Terminal
-●	Flowchart
-#OOP and java Concepts Used 
-●	Inheritance:
+●	IntelliJ IDEA IDE <br>
+●	Notepad++  <br> 
+●	Git Bash  <br>
+●	Windows Terminal  <br>
+●	Flowchart  <br>
+#OOP and java Concepts Used   <br>
+●	Inheritance:  <br>
 We used inheritance to inherit the AWT classes to use Components For the project. Other than that, we inherit together all frames in One class for easy navigation application wide.
-●	 Interface: 
+●	 Interface: <br>
 We had to implement interfaces defined in AWT classes to customize Our needs. We implemented those methods as per our usage and Requirements like Action Listeners, Adapters and etc.
-●	Polymorphism:
+●	Polymorphism:<br>
 We made some of our methods polymorphic as there's different use cases for them.
-●	Abstraction:
+●	Abstraction:<br>
 There are multiple layers of abstraction in these projects by design. We adopt AWT classes, there’s also stock java packages and tools also used, and we designed the Class inheritance hierarchy to make things easy as possible.
-●	 Typecasting:
+●	 Typecasting:<br>
 There’s many typecasting used project wise. Sometimes we had to get our job done by casting data types to another.
-●	Arrays
+●	Arrays <br>
   An array is a collection of similar types of data or value. As we are working on different types of similar data so, we are using an array here to complete our project.
 ●	Files and I/O
 File Handling is necessary to perform various tasks on a file, such as read, write, etc. We use two important streams are FileInputStream and FileOutputStream. 
 
-# Limitations and Possible Future Improvements 
+#Limitations and Possible Future Improvements  <br>
 There are a lot of limitations for this project. Patients cannot use this system online for appointment and contact. There is no scope to access this system by multiple admins. Here there is no option for patients' images and sending data through online. As we can’t use databases here so it’s not possible to create a user interface and also, we could not manage the online payment system here.
 
-#Scope to improve this project in future
+#Scope to improve this project in future <br>
 There are many scopes to improve this project. In the future, we can Design and Implement as Apps, they will be able to use this system though online. Patients will be able to download the data from the system as a file. In future, online help centers for patients will be available and patients will be fixed with appointments with doctors.
 
-#Conclusion
+#Conclusion <br>
 Here in this system, there are two types of users - one is admin and another is patient. Most of the tasks are done by Admin. Patients can easily get appointments, test expenses and test reports through the console system.  
 In this project, we are using JDK-12 (java) and Windows Terminal. We mostly use the OOP concepts to build this system.
 
