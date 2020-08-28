@@ -1,13 +1,13 @@
 import java.lang.*;
-public class Test {
+public class TestReport {
 	private String testName;
 	private String testId;
 	private double testCost;
 	
-	public Test (){
+	public TestReport (){
 		 System.out.println ( " EMPTY! THANKS");
 	}
-	 public Test( String testName, String testId, double testCost)
+	 public TestReport ( String testName, String testId, double testCost)
 	 {
 		 System.out.println ( " Information About the Particular Test ");
 		 this.testName= testName;
