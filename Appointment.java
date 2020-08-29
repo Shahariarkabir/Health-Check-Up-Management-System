@@ -12,7 +12,7 @@ public class Appointment {
         this.patient = patient;
         this.date = date;
         this.admin = admin;
-        System.out.println("You have an Appointment");
+        System.out.println("You  have an Appointment");
     }
 
     public Patient getPatient() {
