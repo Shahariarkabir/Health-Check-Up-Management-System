@@ -1,4 +1,4 @@
-public class Admin {
+
  // Admin class to create an admin for login
 public class Admin{
     // variables  
@@ -11,4 +11,3 @@ public class Admin{
         name = n;
     }
 }   
-}
