@@ -1,5 +1,6 @@
+
 // Admin class to create an admin for login
-public class Admin {
+public class Admin extends patient {
 
     private String name;
     private int Id; // variables
@@ -11,20 +12,24 @@ public class Admin {
     }
 
     // getter and setter
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getId() {
-        return Id;
+    public String getName() {
+        return name;
     }
 
     public void setId(int Id) {
         this.Id = Id;
     }
 
+    public int getId() {
+        return Id;
+    }
+
+    public void showDetails() {
+        System.out.println("Admin ID: " + getId());
+        System.out.println("Admin Name: " + getName());
+    }
 }

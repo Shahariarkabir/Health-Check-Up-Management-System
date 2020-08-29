@@ -1,18 +1,18 @@
-public class Appointment
 
-{
-
-    private Patient patient;
+public class Appointment {
+    private Patient patient[];
     private String date;
     private Admin admin;
 
     public Appointment() {
+        System.out.println("No Appointment");
     }
 
     public Appointment(Patient patient, String date, Admin admin) {
         this.patient = patient;
         this.date = date;
         this.admin = admin;
+        System.out.println("You have an Appointment");
     }
 
     public Patient getPatient() {
