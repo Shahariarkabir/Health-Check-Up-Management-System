@@ -6,8 +6,11 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+
 
 public class Main {
+
 
     public static void main(String arg[]) {
  
@@ -16,8 +19,8 @@ public class Main {
 
 
         //create admin objects
-        Admin admin1 = new Admin(101, "Dr. Hackman"); //( permitter data )
-        Admin admin2 = new Admin(102, "Dr. Cooney");
+        Admin admin1 = new Admin(101, "Dr. Shahariar"); //( permitter data )
+        Admin admin2 = new Admin(102, "Dr. Riya");
 
 
         //add objects to ArrayList
@@ -31,7 +34,7 @@ public class Main {
         Cost test2 = new Cost(502, "Bone Marrow Fluid C/S", 450);
         Cost test3 = new Cost(503, "Covid-19", 250);
         Cost test4 = new Cost(504, "Ct Anglo Ct", 1200);
-        Cost test5 = new Cost(501, "Emg Both Lower Limbs", 850);
+        Cost test5 = new Cost(505, "Emg Both Lower Limbs", 850);
 
 
         //add Cost Object to ArrayList
@@ -60,10 +63,9 @@ public class Main {
 
 
         //create patient objects
-        Patient patient1 = new Patient(3001, "Olivia", "Female", 21, patient1_test);
-        Patient patient2 = new Patient(3002, "Sophia", "Female", 18, patient2_test);
-        Patient patient3 = new Patient(3003, "Aiden", "Male", 25, patient3_test);
-
+        Patient patient1 = new Patient(3001, "Shahariar","Male", 23, patient1_test);
+        Patient patient2 = new Patient(3002, "Riya", "Female", 18, patient2_test);
+        Patient patient3 = new Patient(3003, "Kabir", "Male", 24, patient3_test);
 
         //add patient object to ArrayList
         ArrayList<Patient> patient = new ArrayList<Patient>();
@@ -71,12 +73,10 @@ public class Main {
         patient.add(patient2);
         patient.add(patient3);
 
-
         //create report for each patient test
         ArrayList<String> patient1_report = new ArrayList<String>();
         patient1_report.add("500");
         patient1_report.add("Negative");
-
 
         ArrayList<String> patient2_report = new ArrayList<String>();
         patient2_report.add("Positive");
@@ -85,7 +85,7 @@ public class Main {
 
         ArrayList<String> patient3_report = new ArrayList<String>();
         patient3_report.add("clear");
-        patient3_report.add("Positve");
+        patient3_report.add("Positive");
 
 
         //create Report objects
@@ -121,6 +121,7 @@ public class Main {
 
             int option = scnum.nextInt();
 
+
             if (option == 1) {
                 //get id from admin
                 System.out.print("Can I know your Admin ID :");
@@ -132,9 +133,12 @@ public class Main {
                     index = findAdmin(admin, admin_id);
                 } else {
 
+
                     while (true) {
                         System.out.print("Oops!! Admin You Provide Wrong Information"
                                 + "\nNo Worry Admin, Please Enter again :");
+
+
 
 
                         //repeat the process until get the valid id
@@ -145,48 +149,335 @@ public class Main {
                         }
                     }
                 }
-
-
+                                
                 while (true) {
                     System.out.print("Hurree!!"
                             + "\nAdmin is always a SuperHero You can use Functionality from the list");
 
-
                     //print the menu
-                    System.out.print("\n1. Create Patients Appointments."
-                            + "\n2. View Patients Appointments Details."
-                            + "\n3. Check Particular check-up cost."
-                            + "\n4. View Patients test Details."
-                            + "\n5. View Total patients list"
-                            + "\n6. Logout"
+                    System.out.print("\n1. Add New Patient"
+							+ "\n2. Search Patient"
+                    		+ "\n3. Add Report"
+							+ "\n4. Add Tests for Patient"
+							+ "\n5. Create Patients Appointments."
+                            + "\n6. View Patients Appointments Details."
+                            + "\n7. Check Particular check-up cost."
+                            + "\n8. View Patients test Details."
+                            + "\n9. View Total patients list"
+                            + "\n10. Logout"
                             + "\nPlease Enter your Preferred Option : ");
+
 
                     int choice = scnum.nextInt();
                     if (choice == 1) {
+                    	do
+						{
+							try
+							{
+								int patient_ID;
+								
+								do {
+								//get patient id
+								System.out.print("Please Enter patient ID : ");
+								patient_ID = scnum.nextInt();								
+								
+								Patient p = GetPatient(patient, patient_ID);
+								
+								if(p != null)
+									System.out.println("Patient already exists");
+								else
+									break;
+								
+								}while(true);
+								
+								scnum.nextLine();
+								
+								//get patient name
+								System.out.print("Please Enter patient Name : ");
+								String patient_Name = scnum.nextLine();
+								
+								//get patient gender
+								System.out.print("Please Enter patient Gender : ");
+								String patient_Gender = scnum.nextLine();
+		
+								do
+								{
+									try
+									{
+										//get patient age
+										System.out.print("Please Enter patient Age : ");
+										int patient_Age = scnum.nextInt();
+										scnum.nextLine();
+										
+										do 
+										{
+											
+										try
+										{
+											int count;
+											String test_ID[];
+											do 
+											{
+												count = 0;
+												
+												System.out.print("\nAvailable Tests:");
+												//get patient tests
+												for(int i=0; i<test.size(); ++i)
+													System.out.print(" " + test.get(i).getTest_ID());
+												
+												System.out.print("\nEnter the test numbers separated by space from the above list: ");
+												String patient_Test = scnum.nextLine();
+												
+												test_ID = patient_Test.split(" ");																								
+												
+												for(int i=0; i<test_ID.length; ++i)
+												{
+													for(int j=0; j<test.size(); ++j)
+													{
+														if(test.get(j).getTest_ID() == Integer.parseInt(test_ID[i]))
+														{
+															++count;
+															break;
+														}
+													}
+												}
+												
+												if(count != test_ID.length)
+													System.out.println("Invalid choice of Test IDs");
+											}while(count != test_ID.length);
+											
+											ArrayList<Cost> patient_test = new ArrayList<Cost>();
+											
+											for(int i=0; i<test_ID.length; ++i)
+											{
+												for(int j=0; j<test.size(); ++j)
+												{
+													if(test.get(j).getTest_ID() == Integer.parseInt(test_ID[i]))
+														patient_test.add(test.get(j));
+												}
+											}												
+									        
+											patient.add(new Patient(patient_ID, patient_Name, patient_Gender, patient_Age, patient_test));
+											System.out.println("Patient added successfully\n");
+											break;
+										}
+										catch(InputMismatchException e)
+										{
+											scnum.nextLine();
+											System.out.println("Test ID must be an Integer.");											
+										}
+										catch(NumberFormatException e)
+										{
+											scnum.nextLine();
+											System.out.println("Test ID must be an Integer.");											
+										}	
+									}while(true);
+										
+									break;
+									}
+									//catch exception
+									catch(InputMismatchException e)
+									{
+										scnum.nextLine();
+										System.out.println("Patient Age must be an Integer.");
+									}
+								}while(true);
+							
+							break;
+							}
+							//catch exception
+							catch(InputMismatchException e)
+							{
+								scnum.nextLine();
+								System.out.println("Patient ID must be an Integer.");
+							}
+						}while(true);
+                    	
+					}
+					else if (choice == 2) {
+						do
+						{
+							try
+							{
+								//get patient id
+								System.out.print("Please Enter patient ID : ");
+								int patient_ID = scnum.nextInt();
+								
+								Patient p = GetPatient(patient, patient_ID);
+								
+								if (p != null)    
+									//display patient info 
+									System.out.println(p.toString());
+								else
+									System.out.println("NO patient with such ID");
+								
+								break;
+							}
+							//catch exception
+							catch(InputMismatchException e)
+							{
+								scnum.nextLine();
+								System.out.println("Patient ID must be an Integer.");
+							}
+						}while(true);
+					}	
+					else if (choice == 3) {
+						do
+						{
+							try
+							{
+								//get patient id
+								System.out.print("Please Enter patient ID : ");
+								int patient_ID = scnum.nextInt();
+								scnum.nextLine();
+								
+								Patient p = GetPatient(patient, patient_ID);
+								
+								//create report for  patient test
+						        ArrayList<String> patient_report = new ArrayList<String>();
+								
+								if (p != null) 
+								{
+									for(int i=0; i<p.getTest().size(); ++i)
+									{
+											System.out.print("Enter value for the Test ID " + p.getTest().get(i).getTest_ID() + ": ");
+											String value = scnum.nextLine();
+											
+											patient_report.add(value);
+									}
+									
+									Reports rep = new Reports(p, p.getTest(), patient_report);
+									
+									report.add(rep);
+									System.out.println("Report added successfully.");
+								}
+								else
+									System.out.println("NO patient with such ID");
+								
+								break;
+							}
+							//catch exception
+							catch(InputMismatchException e)
+							{
+								scnum.nextLine();
+								System.out.println("Patient ID must be an Integer.");
+							}
+						}while(true);
+						
+					}
+					else if (choice == 4) {
+						do
+						{
+							try
+							{
+		                        //get patient id
+		                        System.out.print("Please Enter patient ID : ");
+		                        int patient_ID = scnum.nextInt();
+		                       	                        		
+		                        //call GetPatient method
+		                        //GetPatient method return the Patient object of that id ,if id not found it return null
+		                        //Patient object p store the patient with above id
+		                        Patient p = GetPatient(patient, patient_ID);
+		
+		                        if (p != null) {
+		                            	ArrayList<Cost> al_test = p.getTest();
+		                            	boolean found, found2;
+		                            	do
+		                            	{
+		                            		found = found2 = false;
+		                            		try
+		                            		{
+		                            			System.out.print("Enter Test ID to add: ");
+		                            			int test_id = scnum.nextInt();
+		                            			
+		                            			for(int i=0; i<test.size(); ++i)
+												{
+													if(test.get(i).getTest_ID() == test_id)
+													{	
+														found2 = true;
+														for(int j=0; j<al_test.size(); ++j)
+														{
+															if(al_test.get(j).getTest_ID() == test_id)
+															{
+																found = true;
+																System.out.println("Test already exists for the patient");
+																break;
+															}
+														}
+														if(!found)
+														{	
+															al_test.add(GetCost(test, test_id)); 
+														}
+													}
+												}
+		                            			
+		                            			if(!found2)
+		                            			{
+		                            				System.out.println("Test ID does not exists");
+		                            				break;
+		                            			}
+		                            			
+		                            			p.setTest(al_test);
+		                            			System.out.println("Test added to patient successfully");
+		                            			
+		                            			break;
+		                            		}
+		                            		catch(InputMismatchException e)
+		                            		{
+		                            			scnum.nextLine();
+												System.out.println("Test ID must be an Integer.");
+		                            		}
+		                            		
+		                            	}while(true);
+		                            	
+		                        } else {
+		                            System.out.println("NO patient with such ID");
+		                        }
+		                        break;
+							}
+							catch(InputMismatchException e)
+							{
+								scnum.nextLine();
+								System.out.println("Patient ID must be an Integer.");								
+							}
+						}while(true);
+					}
+					else if (choice == 5) {
+						do
+						{
+							try
+							{
+		                        //get patient id
+		                        System.out.print("Please Enter patient ID : ");
+		                        int patient_ID = scnum.nextInt();
+		                        //get the date
+		                        System.out.print("Please Enter Preferred Date : ");
+		                        String Date = scstr.nextLine();
+		
+		                        //call GetPatient method
+		                        //GetPatient method return the Patient object of that id ,if id not found it return null
+		                        //Patient object p store the patient with above id
+		                        Patient p = GetPatient(patient, patient_ID);
+		
+		                        if (p != null) {
+		                            //create appointment object
+		                            Appointment a = new Appointment(patient_ID, Date);
+		                            //add object to arrayList
+		                            appointment.add(a);
+		                            System.out.println("Appointment Booked");
+		                        } else {
+		                            System.out.println("NO patient with such ID");
+		                        }
+		                        break;
+							}
+							catch(InputMismatchException e)
+							{
+								scnum.nextLine();
+								System.out.println("Patient ID must be an Integer.");								
+							}
+						}while(true);
 
-                        //get patient id
-                        System.out.print("Please Enter patient ID : ");
-                        int patient_ID = scnum.nextInt();
-                        //get the date
-                        System.out.print("Please Enter Preferred Date : ");
-                        String Date = scstr.nextLine();
-
-                        //call GetPatient method
-                        //GetPatient method return the Patient object of that id ,if id not found it return null
-                        //Patient object p store the patient with above id
-                        Patient p = GetPatient(patient, patient_ID);
-
-                        if (p != null) {
-                            //create appointment object
-                            Appointment a = new Appointment(patient_ID, Date);
-                            //add object to arrayList
-                            appointment.add(a);
-                            System.out.println("Appointment Booked");
-                        } else {
-                            System.out.println("NO patient with such ID");
-                        }
-
-                    } else if (choice == 2) {
+                    } else if (choice == 6) {
                         System.out.println("Appointment Details");
                         int flag = 0;
                         //print the appointment Details
@@ -194,7 +485,7 @@ public class Main {
                             //compare the admin name of appointment object to admin name
                             System.out.println(i.toString());
                         }
-                    } else if (choice == 3) {
+                    } else if (choice == 7) {
 
 
                         System.out.println("List of all Checkups and their id");
@@ -205,11 +496,9 @@ public class Main {
                         System.out.println("Enter Test id");
                         int test_id = scnum.nextInt();
 
-
                         //call GetCost method
                         //GetCost method return the Cost object of that id ,if id not found it return null
                         Cost t = GetCost(test, test_id);
-
 
                         if (t != null) {
                             //print the cost details
@@ -219,53 +508,56 @@ public class Main {
                         }
 
 
-                    } else if (choice == 4) {
+                    } else if (choice == 8) {
                         System.out.println("All Patients and their Id's");
                         for (Patient p : patient) {
                             System.out.printf("\n%-10s%-10s", p.getId(), p.getName());
                         }
                         //get patient id
-                        System.out.println("\nEnter a test id to see its report: ");
+                        System.out.println("\nEnter a patient id to see its report: ");
                         int patient_ID = scnum.nextInt();
 
-
+                        
                         //call GetPatient method
                         Patient p = GetPatient(patient, patient_ID);
                         if (p != null) {
                             for (Cost c : p.getTest()) {
 
-                                p.printDetails();
+                              p.printDetails();
 
                                 //print the checkup performed by the patient
-                                c.printDetails();
+                              c.printDetails();
                             }
                         } else {
                             System.out.println("NO patient with such ID");
                         }
 
 
-                    } else if (choice == 5) {
+                    } else if (choice == 9) {
 
 
                         //print all patient Details
                         System.out.println("Total Patients List\n");
                         for (Patient p : patient) {
 
+
                             p.printDetails();
                             System.out.println();
                         }
                         // Here for Admin Logout Option;
-                    } else if (choice == 6) {
+                    } else if (choice == 10) {
                             break;
                     } else {
                         System.out.println("Invalid Option");
                     }
 
-                    System.out.println("Admin, If  Want to Back Home Enter 0 \n Otherwise, Please Enter 6 for Log-out ");
+
+                    System.out.println("Admin, If  Want to Back Home Enter 0 \n Otherwise, Please Enter 10 for Log-out ");
                     //get input from the user
                     String again = scnum.next();
                     if (again.equals("0")) {
                         continue;
+
 
                     } else {
                         System.out.print("Do you want to go back to Login Screen ? (YES/NO) : ");
@@ -279,11 +571,11 @@ public class Main {
                         }
                     }
 
-
                 }
 
 
             } else if (option == 2) {
+
 
                 //get Patient Id;;
                 System.out.print("Can i know your Patient ID:");
@@ -297,6 +589,7 @@ public class Main {
                     System.out.print("Ohh! No, You Provide Wrong Information Don't woerry,"
                             + "\nDon't Lose Your Hope Please Enter Patient ID again :");
 
+
                     //repeat the process until correct entered id
                     while (true) {
                         patient_id = scnum.nextInt();
@@ -309,6 +602,7 @@ public class Main {
 
                     }
 
+
                 }
 
                 while (true) {
@@ -316,7 +610,6 @@ public class Main {
                     System.out.print("Yipee!!"
                             + "\nYou are a RockStar. Here we Glad to inform you"
                             + "\nWe have 5 Types of Awesome Category.");
-
 
                     System.out.println("\n1. Create Patients Appointments."
                             + "\n2. View Patients Appointments Details."
@@ -354,7 +647,6 @@ public class Main {
 
                     } else if (choice == 3) {
 
-
                         System.out.println("List of all Checkups and their id");
                         for (Cost t : test) {
                             System.out.println(t.getTest_ID() + " - " + t.getTest_Name());
@@ -367,7 +659,6 @@ public class Main {
                         //GetCost method return the Cost object of that id ,if id not found it return null
                         Cost t = GetCost(test, test_id);
 
-
                         if (t != null) {
                             //print the cost details
                             t.printDetails();
@@ -375,8 +666,8 @@ public class Main {
                             System.out.println("NO check-up with such ID");
                         }
 
-
                     } else if (choice == 4) {
+
 
                         Patient p = patient.get(index);
                         if (p != null) {
@@ -385,17 +676,16 @@ public class Main {
                                 c.printDetails();
                             }
                         }
-
                     } else if (choice == 5) {
+
 
                         String file = "";
                         //print the Report Details of the Patient
                         for (Reports r : report) {
                             if (r.getPatient().getId() == patient.get(index).getId()) {
                                 r.printDetails();
-                                //file store all Report detial as String
+                                //file store all Report detail as String
                                 file = r.printDetails(r);
-
                             }
                         }
                         //Add the report to file
@@ -411,13 +701,13 @@ public class Main {
                             System.out.println("An error occurred.");
                             e.printStackTrace();
                         }
-
                     // Here for  Patient Logout Option;
                     } else if (choice == 6) {
                         break;
                     } else {
                         System.out.println("Invalid Option");
                     }
+
 
                     System.out.println("Patient, If you Want to Back Home Enter 0 \n Otherwise, Please Enter 6 for Log-out");
                     String again = scnum.next();
@@ -434,13 +724,11 @@ public class Main {
                             return;
                         }
                     }
-
                 }
             } else {
                 System.out.println("Oh No!! You Provide Wrong Information"
                         + "\nNo Worry Admin, Please Enter again :");
             }
-
 
         }
     }
@@ -457,14 +745,12 @@ public class Main {
         return -1;
     }
 
-
     private static Patient GetPatient(ArrayList<Patient> patient, int patient_ID) {
         for (Patient p : patient) {
             if (p.getId() == patient_ID) {
                 return p;
             }
         }
-
 
         return null;
     }
@@ -481,7 +767,6 @@ public class Main {
         return null;
     }
 
-
     private static int findPatient(ArrayList<Patient> patient, int patient_id) {
         for (int i = 0; i < patient.size(); i++) {
             if (patient.get(i).getId() == patient_id) {
@@ -493,13 +778,13 @@ public class Main {
         return -1;
     }
 
-
     private static Admin GetAdmin(ArrayList<Admin> admin, int admin_ID) {
         for (Admin p : admin) {
             if (p.getId() == admin_ID) {
                 return p;
             }
         }
+
 
         return null;
     }
