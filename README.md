@@ -7,7 +7,7 @@ This project helps the Admin and Patient. Also, it helps to maintain the patient
 
 
 # Goals 
-●	Administrators are able to manage appointments, deliver check-up reports and have more facilities. <br>
+●	●Administrators are able to manage add patient, report, assign new test base on Patient ID,  appointments, deliver check-up reports, manage patient lists and have more facilities.<br>
 ●	Patients can easily book an appointment, check testing costs and collect the reports. <br>
 
 # Features of the Project 
@@ -15,6 +15,10 @@ This project helps the Admin and Patient. Also, it helps to maintain the patient
 ➔	In this project the “Admin” has the following features: <br>
 
 ◆	Log-In <br>
+◆	Add New Patient <br>
+◆	Search Patient <br>
+◆	Add Report <br>
+◆	Add Tests for Patient<br>
 ◆	Create Patients Appointments. <br>
 ◆	View Patients Appointments Details. <br>
 ◆	Check the particular check-up cost. <br>
