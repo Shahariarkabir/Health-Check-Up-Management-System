@@ -45,11 +45,10 @@ public class Reports implements Printable {
     //this method returns all the report Details as String
     public String printDetails(Reports r) {
 
-        String Details = "NAME     : " + r.patient.getName() + System.lineSeparator() + ""
-                + "ID              : " + r.patient.getId() + System.lineSeparator() + ""
-                + "NAME              : " + r.patient.getName() + System.lineSeparator() + ""
+        String Details = "ID     : " + r.patient.getId() + System.lineSeparator() + ""
+                + "NAME   : " + r.patient.getName() + System.lineSeparator() + ""
                 + "GENDER : " + r.patient.getGender() + System.lineSeparator() + ""
-                + "AGE          : " + r.patient.getAge() + System.lineSeparator();
+                + "AGE    : " + r.patient.getAge() + System.lineSeparator();
         for (int i = 0; i < cost.size(); i++) {
             Details = Details + System.lineSeparator() + cost.get(i).getTest_ID() + " " + cost.get(i).getTest_Name() + " " + reports.get(i);
         }
